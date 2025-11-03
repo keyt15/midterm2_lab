@@ -1,7 +1,6 @@
 package com.crud.midterm.Controller;
 
 import com.crud.midterm.DTO.ProductDTO;
-import com.crud.midterm.Model.Product;
 import com.crud.midterm.Service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -11,11 +10,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/products")
-public class ProductController {
+public class Product {
 
     private final ProductService service;
 
-    public ProductController(ProductService service) {
+    public Product(ProductService service) {
         this.service = service;
     }
 
@@ -44,7 +43,7 @@ public class ProductController {
 
     @GetMapping("/{id}/edit")
     public String editForm(@PathVariable int id, Model model) {
-        Product product = service.findById(id);
+        com.crud.midterm.Model.Product product = service.findById(id);
 
         if (product == null) {
             return "redirect:/products";
@@ -59,7 +58,7 @@ public class ProductController {
                          @Valid @ModelAttribute("product") ProductDTO dto,
                          RedirectAttributes ra) {
 
-        Product existing = service.findById(id);
+        com.crud.midterm.Model.Product existing = service.findById(id);
 
         if (existing == null) {
             return "redirect:/products";

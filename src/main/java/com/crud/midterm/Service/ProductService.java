@@ -4,7 +4,6 @@ import com.crud.midterm.DTO.ProductDTO;
 import com.crud.midterm.Model.Product;
 import com.crud.midterm.Repository.ProductRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -35,7 +34,7 @@ public class ProductService {
 
     private void updateFields(Product p, ProductDTO dto) {
         p.setName(dto.getName());
-        p.setDescription(dto.getDescription());
+        p.setBrand(dto.getBrand());
         p.setPrice(dto.getPrice());
     }
 
