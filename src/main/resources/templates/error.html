@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        /* Body styling */
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffe6f0; /* soft pink */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            animation: fadeInBody 1s ease-in;
+        }
+
+        @keyframes fadeInBody {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff0f6; /* very light pink */
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
+            animation: fadeInCard 1s ease forwards;
+            opacity: 0;
+            text-align: center;
+        }
+
+        @keyframes fadeInCard {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Heading */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            animation: bounceIn 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Paragraph */
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* Back button */
+        .btn-back {
+            display: inline-block;
+            background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: linear-gradient(90deg, #ff69b4, #ff1493);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .btn-back {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Error</h1>
+    <p>Something went wrong. Please try again later.</p>
+    <a th:href="@{/}" class="btn-back" aria-label="Back to Home">← Back to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Employee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>/* Body styling */
+    body {
+        font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #ffe6f0; /* soft pink background */
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        animation: fadeInBody 1s ease-in;
+    }
+
+    /* Fade in body */
+    @keyframes fadeInBody {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Container card */
+    .container {
+        max-width: 450px;
+        margin: 50px auto;
+        padding: 35px 30px;
+        background-color: #fff0f6; /* very light pink */
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
+        text-align: center;
+        animation: fadeInCard 1s ease forwards;
+        opacity: 0;
+    }
+
+    /* Fade in card */
+    @keyframes fadeInCard {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Heading */
+    h2 {
+        font-family: 'Dancing Script', cursive;
+        color: #ff69b4; /* hot pink */
+        font-size: 2rem;
+        margin-bottom: 25px;
+        animation: bounceIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    /* Heading animation */
+    @keyframes bounceIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        60% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Form group */
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeUp 0.8s ease forwards;
+        animation-delay: 0.5s;
+    }
+
+    /* Stagger form fields */
+    .form-group:nth-child(1) { animation-delay: 0.5s; }
+    .form-group:nth-child(2) { animation-delay: 0.7s; }
+
+    /* Fade-up animation for inputs */
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Labels */
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #ff1493; /* deep pink */
+        transition: color 0.3s ease;
+    }
+
+    label:hover {
+        color: #ff69b4;
+    }
+
+    /* Input fields */
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #ffb6c1;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+        border-color: #ff69b4;
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        transform: scale(1.02);
+        outline: none;
+    }
+
+    /* Error messages */
+    p.error {
+        color: #dc143c;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    /* Submit button */
+    .btn-submit {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        opacity: 0;
+        animation: fadeInButton 1s ease forwards;
+        animation-delay: 1s;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 6px 15px rgba(255, 105, 180, 0.5);
+        background: linear-gradient(90deg, #ff69b4, #ff1493);
+    }
+
+    /* Fade in button animation */
+    @keyframes fadeInButton {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Back link */
+    .back-link {
+        margin-top: 20px;
+        text-align: center;
+        opacity: 0;
+        animation: fadeInButton 1s ease forwards;
+        animation-delay: 1.2s;
+    }
+
+    .back-link a {
+        text-decoration: none;
+        color: #ff69b4;
+        font-weight: bold;
+        transition: color 0.3s, text-decoration 0.3s;
+    }
+
+    .back-link a:hover {
+        color: #ff1493;
+        text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+        .container {
+            margin: 30px 15px;
+            padding: 25px 20px;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+        }
+
+        .btn-submit {
+            font-size: 1rem;
+            padding: 10px 0;
+        }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Employee</h2>
+    <form th:action="@{/save}" th:object="${employee}" method="post" novalidate>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}">
+            <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}">
+            <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <button type="submit" class="btn btn-submit">Add Employee</button>
+    </form>
+    <div class="back-link">
+        <a th:href="@{/}">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>
