@@ -1,13 +1,13 @@
-package com.crud.prelim_crud;
+package com.crud.midterm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PrelimCrudApplication {
+public class MidtermApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PrelimCrudApplication.class, args);
+        SpringApplication.run(MidtermApplication.class, args);
     }
-
 }
+

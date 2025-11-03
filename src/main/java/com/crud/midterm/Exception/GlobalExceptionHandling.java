@@ -1,4 +1,4 @@
-package com.crud.prelim_crud.Exception;
+package com.crud.midterm.Exception;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
