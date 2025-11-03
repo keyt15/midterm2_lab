@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin(origins = "http://localhost:8080")
-public class ProductApiController {
+public class ProductApi {
 
     private final ProductService service;
 
-    public ProductApiController(ProductService service) {
+    public ProductApi(ProductService service) {
         this.service = service;
     }
 
